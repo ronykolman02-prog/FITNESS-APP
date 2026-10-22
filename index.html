@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06111f">
+<title>WSAM FITNESS | وسام فتنس</title>
+<style>
+:root{--bg:#050b14;--panel:#0b1929;--line:#1e3c58;--blue:#1685ff;--cyan:#22c8ff;--text:#f3f8ff;--muted:#9bb0c7}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#102746,#050b14 65%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:720px;margin:auto;padding:0 14px 100px}
+.hero{position:relative;overflow:hidden;border:1px solid #204768;border-radius:25px;margin:14px 0 18px;min-height:280px;background:linear-gradient(0deg,#06111f 0%,rgba(3,12,25,.15) 100%),url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1100&q=85') center/cover}
+.hero-content{padding:24px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
+.logo{font-size:clamp(28px,7vw,43px);font-weight:1000;letter-spacing:2px;direction:ltr;text-shadow:0 0 24px #1685ff}
+.logo span{color:var(--blue)}
+.brand-ar{font-size:12px;letter-spacing:5px;color:#5bc9ff;margin-top:7px}
+.eyebrow{color:var(--cyan);font-size:12px;font-weight:800}
+.tagline{color:#d6e7fa;font-size:14px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:20px 2px}
+.topline h1{font-size:23px;margin:4px 0}
+.sub{color:var(--muted);font-size:13px;line-height:1.7}
+.card{background:linear-gradient(145deg,#10243af2,#081625);border:1px solid var(--line);border-radius:19px;padding:17px;margin-bottom:14px;box-shadow:0 10px 30px #0002}
+.card h2{font-size:18px;margin:0 0 13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:12px;color:#b8cbe0}
+.field input,.field select{width:100%;min-width:0;border:1px solid #294b6c;border-radius:12px;background:#061322;color:white;padding:13px 11px;outline:none}
+.field input:focus,.field select:focus{border-color:var(--cyan)}
+.full{grid-column:1/-1}
+.btn{border:0;border-radius:13px;padding:14px 16px;font-weight:800;background:linear-gradient(100deg,#0874f9,#20a5ff);color:white}
+.btn.secondary,.btn.ghost{background:#102a43;border:1px solid #315575;box-shadow:none}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap}
+.btnrow .btn{flex:1}
+.goal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.goal{border:1px solid #294b6c;background:#081728;border-radius:14px;padding:13px 10px;text-align:right;color:white;min-height:85px}
+.goal strong{display:block;margin-bottom:5px}
+.goal small{color:var(--muted);font-size:12px}
+.goal.active{border-color:var(--blue);background:#0b2c4c;box-shadow:inset 0 0 0 1px var(--blue)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat,.macro{padding:15px;border-radius:15px;border:1px solid #214968;background:#071626}
+.stat .label,.macro small{font-size:12px;color:var(--muted)}
+.stat .value{font-size:25px;font-weight:900;margin:5px 0}
+.stat .unit{font-size:12px;color:var(--cyan)}
+.bar{height:8px;background:#1b3147;border-radius:99px;overflow:hidden;margin-top:10px}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:99px;width:0}
+.macro-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.macro{text-align:center;padding:12px 8px}
+.macro b{display:block;font-size:20px}
+.meal{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid #20364b}
+.meal:last-child{border-bottom:0}
+.meal-icon{width:43px;height:43px;display:grid;place-items:center;background:#102e49;border-radius:13px;font-size:22px;flex-shrink:0}
+.meal-info{flex:1;min-width:0}
+.meal-info b{display:block;font-size:14px}
+.meal-info small{color:var(--muted);font-size:12px;line-height:1.9}
+.meal-kcal{font-size:12px;color:var(--cyan);white-space:nowrap}
+.notice{background:#182b36;border:1px solid #36515c;color:#c9e9f2;padding:12px;border-radius:12px;font-size:12px;line-height:1.8;margin-top:12px}
+.hidden{display:none!important}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:5;background:#071321f5;border-top:1px solid #203d57;padding:9px 8px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:5px}
+.nav button{flex:1;max-width:150px;background:transparent;border:0;color:#8ea8c2;padding:8px 3px;border-radius:11px;font-size:11px}
+.nav button span{display:block;font-size:20px;margin-bottom:3px}
+.nav button.active{background:#102d49;color:#52baff}
+.section{display:none}
+.section.active{display:block}
+.pill{display:inline-block;padding:5px 9px;background:#0d3150;color:#79d4ff;border-radius:99px;font-size:11px}
+.small{font-size:12px;color:var(--muted);line-height:1.8}
+.empty{color:var(--muted);text-align:center;padding:20px}
+.footer{text-align:center;color:#6f89a5;font-size:11px;padding:12px}
+@media(min-width:600px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.goal-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero">
+<div class="hero-content">
+<div class="eyebrow">YOUR GOALS • YOUR PLAN</div>
+<div class="logo">WASAM <span>FITNESS</span></div>
+<div class="brand-ar">وســام فــتــنــس</div>
+<p class="tagline">خطتك الذكية للتغذية واللياقة وبناء جسم أقوى.</p>
+</div>
+</header>
+
+<section id="profile" class="section active">
+<div class="topline"><div><div class="eyebrow">ملفك الرياضي</div><h1>خلّينا نعرفك أكثر</h1><div class="sub">أدخل معلوماتك لحساب احتياجاتك اليومية التقديرية.</div></div><span class="pill">١ • بياناتك</span></div>
+<div class="card">
+<h2>📋 معلوماتك الشخصية</h2>
+<div class="grid">
+<div class="field"><label>الاسم (اختياري)</label><input id="name" placeholder="اكتب اسمك"></div>
+<div class="field"><label>العمر</label><input id="age" type="number" min="18" max="100" placeholder="مثلاً 28"></div>
+<div class="field"><label>الطول (سم)</label><input id="height" type="number" min="120" max="230" placeholder="181"></div>
+<div class="field"><label>الوزن (كغم)</label><input id="weight" type="number" min="35" max="300" step=".1" placeholder="85"></div>
+<div class="field"><label>الجنس المستخدم بالحساب</label><select id="sex"><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
+<div class="field"><label>طبيعة العمل</label><select id="work"><option value="sedentary">جلوس / مكتب</option><option value="light">حركة خفيفة</option><option value="active">عمل نشيط ووقوف</option><option value="physical">عمل بدني شاق</option></select></div>
+<div class="field"><label>أيام التدريب بالأسبوع</label><select id="days"><option value="0">٠ أيام</option><option value="1">يوم</option><option value="2">يومان</option><option value="3">٣ أيام</option><option value="4" selected>٤ أيام</option><option value="5">٥ أيام</option><option value="6">٦ أيام</option><option value="7">٧ أيام</option></select></div>
+<div class="field"><label>مكان التمرين</label><select id="training"><option value="gym">الجيم / أوزان</option><option value="home">تمارين بالبيت</option><option value="mixed">الجيم والبيت</option><option value="none">ما أتمرن حالياً</option></select></div>
+<div class="field full"><label>نشاطك خارج التمرين</label><select id="activity"><option value="1.2">قليل الحركة</option><option value="1.375" selected>نشاط خفيف</option><option value="1.55">نشاط متوسط</option><option value="1.725">نشاط مرتفع</option></select></div>
+</div>
+</div>
+<div class="card">
+<h2>🎯 اختار هدفك</h2>
+<div class="goal-grid" id="goals">
+<button class="goal" data-goal="loss"><strong>🔥 خسارة وزن</strong><small>تقليل الدهون تدريجياً</small></button>
+<button class="goal" data-goal="maintain"><strong>⚖️ ثبات الوزن</strong><small>الحفاظ على الوزن</small></button>
+<button class="goal active" data-goal="muscle"><strong>💪 زيادة عضلات</strong><small>بناء عضلات متوازن</small></button>
+<button class="goal" data-goal="bulk"><strong>🏆 تضخيم نظيف</strong><small>زيادة تدريجية بالكتلة</small></button>
+</div>
+<div class="field" style="margin-top:13px"><label>عدد الوجبات المفضل</label><select id="mealsCount"><option value="3">٣ وجبات</option><option value="4" selected>٤ وجبات</option><option value="5">٥ وجبات</option><option value="6">٦ وجبات</option></select></div>
+<button class="btn" id="generate" style="width:100%;margin-top:16px">احسب خطتي وأنشئ البرنامج ←</button>
+<button class="btn secondary" id="loadSaved" style="width:100%;margin-top:8px">استرجاع البيانات المحفوظة</button>
+<p class="small">الحسابات تقديرية للتثقيف العام، وليست بديلاً عن اختصاصي التغذية.</p>
+</div>
+</section>
+
+<section id="dashboard" class="section">
+<div class="topline"><div><div class="eyebrow">ملخص يومك</div><h1 id="welcome">خطتك اليومية</h1><div class="sub" id="goalLabel">هدفك الرياضي</div></div><button class="btn ghost" id="editProfile">تعديل البيانات</button></div>
+<div class="card">
+<h2>⚡ احتياجك اليومي</h2>
+<div class="stats">
+<div class="stat"><div class="label">السعرات</div><div class="value" id="calories">—</div><div class="unit">سعرة / يوم</div></div>
+<div class="stat"><div class="label">البروتين</div><div class="value" id="protein">—</div><div class="unit">غرام / يوم</div></div>
+<div class="stat"><div class="label">الكارب</div><div class="value" id="carbs">—</div><div class="unit">غرام / يوم</div></div>
+<div class="stat"><div class="label">الدهون</div><div class="value" id="fats">—</div><div class="unit">غرام / يوم</div></div>
+</div>
+</div>
+<div class="card">
+<h2>💧 الماء والحركة</h2>
+<div class="grid">
+<div><div class="sub">هدف الماء التقريبي</div><div style="font-size:24px;font-weight:900;margin:7px 0" id="waterGoal">—</div><div class="small">زد أو قلل حسب الجو والتعرّق والحالة الصحية.</div></div>
+<div><div class="sub">هدف الخطوات المقترح</div><div style="font-size:24px;font-weight:900;margin:7px 0" id="stepsGoal">—</div><div class="small">ابدأ من مستواك الحالي وزد تدريجياً.</div></div>
+</div>
+<div class="bar"><span id="waterBar"></span></div>
+<div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:12px"><strong id="waterToday">0.00 لتر</strong><span class="sub">شربت اليوم</span><button class="btn" id="addWater">+ ٢٥٠ مل</button><button class="btn secondary" id="resetWater">تصفير</button></div>
+</div>
+<div class="card">
+<h2>🍽️ ملخص وجباتك</h2>
+<div class="macro-row"><div class="macro"><b id="mealTotal">—</b><small>وجبة يومياً</small></div><div class="macro"><b id="snackTotal">—</b><small>سعرة تقريباً</small></div><div class="macro"><b id="proteinTotal">—</b><small>غ بروتين</small></div></div>
+<p class="small">شوف المقادير والبدائل بقسم وجباتي.</p><button class="btn" id="goMeals" style="width:100%">عرض جدول الوجبات</button>
+</div>
+<div class="notice">الحساب تقديري وقد يختلف حسب الكتلة العضلية والحركة والصحة. راقب تغيّر الوزن والطاقة وعدّل الخطة تدريجياً.</div>
+</section>
+
+<section id="meals" class="section">
+<div class="topline"><div><div class="eyebrow">التغذية اليومية</div><h1>وجباتك بالغرام</h1><div class="sub">الأرز موزون بعد الطبخ، والشوفان جاف، واللحوم بعد الطبخ.</div></div><span class="pill" id="mealPill">٤ وجبات</span></div>
+<div class="card"><h2>🥗 جدول مقترح</h2><div class="small">أمثلة غذائية قابلة للتبديل، وليست وصفة طبية.</div><div id="mealList"></div></div>
+<div class="card"><h2>🍎 فواكه ودهون صحية</h2><div id="extrasList"></div></div>
+<div class="card"><h2>🔄 بدائل سهلة</h2>
+<div class="meal"><div class="meal-icon">🍚</div><div class="meal-info"><b>بديل الأرز</b><small>بطاطا بالفرن أو خبز أسمر أو برغل، مع اختلاف السعرات والكميات.</small></div></div>
+<div class="meal"><div class="meal-icon">🍗</div><div class="meal-info"><b>بديل الدجاج</b><small>سمك أو لحم قليل الدهن أو بيض أو بقوليات؛ البروتين يختلف.</small></div></div>
+<div class="meal"><div class="meal-icon">🥑</div><div class="meal-info"><b>دهون صحية</b><small>زيت الزيتون أو المكسرات أو الطحينية بكميات محسوبة.</small></div></div>
+</div>
+</section>
+
+<section id="progress" class="section">
+<div class="topline"><div><div class="eyebrow">تابع تطورك</div><h1>تقدمك الرياضي</h1><div class="sub">سجّل وزنك لمتابعة التغيّر مع الوقت.</div></div></div>
+<div class="card"><h2>⚖️ تسجيل الوزن</h2><div class="grid">
+<div class="field"><label>وزنك الحالي (كغم)</label><input id="newWeight" type="number" min="30" max="300" step=".1" placeholder="84.5"></div>
+<div class="field"><label>التاريخ</label><input id="weightDate" type="date"></div>
+<div class="full"><button class="btn" id="saveWeight" style="width:100%">حفظ الوزن</button></div>
+</div></div>
+<div class="card"><h2>📈 سجل الأوزان</h2><div id="weightHistory" class="empty">ماكو أوزان محفوظة.</div><button class="btn secondary" id="exportData" style="width:100%;margin-top:12px">تصدير نسخة احتياطية</button></div>
+</section>
+
+<section id="settings" class="section">
+<div class="topline"><div><div class="eyebrow">إعدادات البرنامج</div><h1>الإعدادات والحفظ</h1><div class="sub">بياناتك تبقى في المتصفح على هذا الجهاز.</div></div></div>
+<div class="card"><h2>💾 إدارة البيانات</h2><p class="small">احفظ معلوماتك وخطتك على الجهاز. مسح بيانات المتصفح قد يزيلها.</p><div class="btnrow"><button class="btn" id="saveAll">حفظ بياناتي</button><button class="btn secondary" id="downloadBackup">تنزيل نسخة JSON</button></div></div>
+<div class="card"><h2>🔒 الخصوصية</h2><p class="small">هذه النسخة لا تحتوي على حسابات أو مزامنة سحابية. صور الواجهة تحتاج إنترنت.</p><button class="btn ghost" id="clearData" style="width:100%">مسح كل البيانات المحفوظة</button></div>
+<div class="card"><h2>ℹ️ عن WASAM FITNESS</h2><p class="small">مساعد لتقدير السعرات والمغذيات. ليس جهازاً طبياً. إذا كان عمرك أقل من ١٨ سنة أو لديك حالة صحية خاصة، استشر مختصاً قبل اتباع نظام غذائي.</p></div>
+</section>
+<div class="footer">WASAM FITNESS • خطتك، التزامك، تطورك</div>
+</div>
+
+<nav class="nav">
+<button class="active" data-section="dashboard"><span>⌂</span>الرئيسية</button>
+<button data-section="meals"><span>♧</span>وجباتي</button>
+<button data-section="progress"><span>↗</span>تقدمي</button>
+<button data-section="profile"><span>◎</span>بياناتي</button>
+<button data-section="settings"><span>⚙</span>الإعدادات</button>
+</nav>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const STORE='wasamFitnessArabicV1';
+let goal='muscle',plan=null,water=0,history=[];
+const goalNames={loss:'خسارة وزن',maintain:'ثبات الوزن',muscle:'زيادة الكتلة العضلية',bulk:'تضخيم نظيف'};
+const num=id=>Number($(id).value);
+
+function readForm(){
+return {name:$('name').value.trim(),age:num('age'),height:num('height'),weight:num('weight'),sex:$('sex').value,work:$('work').value,days:num('days'),training:$('training').value,activity:num('activity'),mealsCount:num('mealsCount'),goal};
+}
+function validate(d){
+if(!d.age||d.age<18||d.age>100)return 'أدخل عمراً صحيحاً من ١٨ سنة فما فوق.';
+if(!d.height||d.height<120||d.height>230)return 'أدخل طولاً صحيحاً بالسنتيمتر.';
+if(!d.weight||d.weight<35||d.weight>300)return 'أدخل وزناً صحيحاً بالكيلوغرام.';
+return '';
+}
+function calculate(d){
+const bmr=10*d.weight+6.25*d.height-5*d.age+(d.sex==='male'?5:-161);
+const workFactor={sedentary:0,light:.05,active:.12,physical:.2}[d.work]||0;
+const trainingFactor=d.training==='none'?0:Math.min(.18,d.days*.025);
+const tdee=Math.round(bmr*(d.activity+workFactor+trainingFactor));
+let target=tdee;
+if(d.goal==='loss')target=Math.round(tdee*.85);
+if(d.goal==='muscle')target=Math.round(tdee*1.07);
+if(d.goal==='bulk')target=Math.round(tdee*1.10);
+const protein=Math.round(d.weight*(d.goal==='loss'?1.8:1.7));
+const fats=Math.round(d.weight*.8);
+const carbs=Math.max(0,Math.round((target-protein*4-fats*9)/4));
+const waterLitres=Math.max(1.8,Math.min(3.5,Math.round(d.weight*.035*10)/10));
+const steps=d.work==='physical'?10000:d.work==='active'?9000:8000;
+return {bmr:Math.round(bmr),tdee,target,protein,fats,carbs,waterLitres,steps};
+}
+function buildMeals(d,p){
+const templates=[
+{icon:'🍳',name:'الفطور',time:'٧:٠٠ صباحاً',foods:[['بيض كامل',2,'حبة'],['شوفان جاف',50,'غ'],['موز',1,'حبة'],['لبن أو زبادي',150,'غ']]},
+{icon:'🍎',name:'وجبة خفيفة',time:'١٠:٣٠ صباحاً',foods:[['تفاح',1,'حبة'],['لوز',15,'غ'],['زبادي يوناني',150,'غ']]},
+{icon:'🍗',name:'الغداء',time:'١:٣٠ ظهراً',foods:[['صدر دجاج مطبوخ',150,'غ'],['أرز مطبوخ',180,'غ'],['خضروات متنوعة',150,'غ'],['زيت زيتون',5,'غ']]},
+{icon:'🥪',name:'وجبة خفيفة',time:'٤:٣٠ عصراً',foods:[['خبز أسمر',60,'غ'],['جبن قريش أو لبنة خفيفة',100,'غ'],['خيار وطماطم',100,'غ']]},
+{icon:'🐟',name:'العشاء',time:'٧:٣٠ مساءً',foods:[['سمك مطبوخ أو دجاج',150,'غ'],['بطاطا بالفرن',200,'غ'],['سلطة',150,'غ'],['زيت زيتون',5,'غ']]},
+{icon:'🥛',name:'وجبة اختيارية',time:'قبل النوم عند الحاجة',foods:[['لبن أو زبادي',170,'غ'],['جوز',10,'غ']]}
+];
+const chosen=templates.slice(0,d.mealsCount);
+const mult=Math.max(.75,Math.min(1.35,p.target/2300));
+$('mealList').innerHTML=chosen.map((m,i)=>{
+const foods=m.foods.map(f=>{
+let amount=f[1];
+if(f[2]==='غ'&&!['خضروات متنوعة','خيار وطماطم','سلطة'].includes(f[0]))amount=Math.max(5,Math.round(amount*mult/5)*5);
+return `${f[0]}: <b>${amount} ${f[2]}</b>`;
+}).join(' • ');
+return `<div class="meal"><div class="meal-icon">${m.icon}</div><div class="meal-info"><b>${i+1}. ${m.name}</b><small>${m.time}<br>${foods}</small></div><div class="meal-kcal">~${Math.round(p.target/chosen.length)} سعرة</div></div>`;
+}).join('');
+$('mealPill').textContent=d.mealsCount+' وجبات';
+$('extrasList').innerHTML=[
+['🍊','فواكه يومية','حبة أو حصتين حسب الجوع والسعرات: تفاح أو موز أو برتقال.'],
+['🥜','دهون صحية','١٥–٢٠ غ مكسرات أو ٥–١٠ غ زيت زيتون محسوبة ضمن السعرات.'],
+['🥦','خضروات وألياف','خضروات متنوعة مع وجبتين أو أكثر يومياً.'],
+['💧','الماء','اشرب على فترات خلال اليوم وتجنب شرب كميات مفرطة.']
+].map(x=>`<div class="meal"><div class="meal-icon">${x[0]}</div><div class="meal-info"><b>${x[1]}</b><small>${x[2]}</small></div></div>`).join('');
+}
+function render(){
+if(!plan)return;
+const d=plan.data,p=plan.calc;
+$('welcome').textContent=d.name?'أهلاً '+d.name:'خطتك اليومية';
+$('goalLabel').textContent='هدفك: '+goalNames[d.goal]+' • '+d.weight+' كغم';
+$('calories').textContent=p.target.toLocaleString('en-US');
+$('protein').textContent=p.protein;
+$('carbs').textContent=p.carbs;
+$('fats').textContent=p.fats;
+$('waterGoal').textContent=p.waterLitres.toFixed(1)+' لتر';
+$('stepsGoal').textContent=p.steps.toLocaleString('en-US')+' خطوة';
+$('mealTotal').textContent=d.mealsCount;
+$('snackTotal').textContent=p.target.toLocaleString('en-US');
+$('proteinTotal').textContent=p.protein;
+updateWater();buildMeals(d,p);renderHistory();
+}
+function saveSilent(){
+try{localStorage.setItem(STORE,JSON.stringify({plan,water,history}));}catch(e){}
+}
+function save(){
+if(!plan){alert('أدخل بياناتك واحسب الخطة أولاً.');return;}
+saveSilent();alert('تم حفظ بياناتك على هذا الجهاز.');
+}
+function load(){
+try{
+const x=JSON.parse(localStorage.getItem(STORE)||'null');
+if(!x||!x.plan){alert('ماكو بيانات محفوظة بهذا الجهاز.');return;}
+plan=x.plan;water=x.water||0;history=x.history||[];
+fillForm(plan.data);goal=plan.data.goal;
+document.querySelectorAll('.goal').forEach(b=>b.classList.toggle('active',b.dataset.goal===goal));
+render();showSection('dashboard');alert('تم استرجاع البيانات المحفوظة.');
+}catch(e){alert('تعذر قراءة البيانات المحفوظة.');}
+}
+function fillForm(d){
+['name','age','height','weight','sex','work','days','training','activity','mealsCount'].forEach(k=>{if($(k)&&d[k]!==undefined)$(k).value=d[k];});
+}
+function updateWater(){
+$('waterToday').textContent=(water/1000).toFixed(2)+' لتر';
+const g=plan?plan.calc.waterLitres*1000:2500;
+$('waterBar').style.width=Math.min(100,water/g*100)+'%';
+}
+function renderHistory(){
+if(!history.length){$('weightHistory').innerHTML='ماكو أوزان محفوظة لحد الآن.';return;}
+$('weightHistory').innerHTML=history.slice().reverse().map(x=>`<div class="meal"><div class="meal-icon">⚖️</div><div class="meal-info"><b>${x.weight} كغم</b><small>${x.date}</small></div></div>`).join('');
+}
+function showSection(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));
+document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===id));
+window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.goal').forEach(b=>b.addEventListener('click',()=>{
+goal=b.dataset.goal;
+document.querySelectorAll('.goal').forEach(x=>x.classList.toggle('active',x===b));
+}));
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showSection(b.dataset.section)));
+$('generate').addEventListener('click',()=>{
+const d=readForm(),err=validate(d);
+if(err){alert(err);return;}
+plan={data:d,calc:calculate(d)};water=0;render();showSection('dashboard');saveSilent();
+});
+$('loadSaved').addEventListener('click',load);
+$('editProfile').addEventListener('click',()=>showSection('profile'));
+$('goMeals').addEventListener('click',()=>showSection('meals'));
+$('addWater').addEventListener('click',()=>{water+=250;updateWater();saveSilent();});
+$('resetWater').addEventListener('click',()=>{water=0;updateWater();saveSilent();});
+$('saveWeight').addEventListener('click',()=>{
+const w=num('newWeight'),date=$('weightDate').value||new Date().toISOString().slice(0,10);
+if(!w||w<30||w>300){alert('أدخل وزناً صحيحاً.');return;}
+history.push({weight:w,date});
+if(plan){plan.data.weight=w;plan.calc=calculate(plan.data);render();}
+saveSilent();alert('تم حفظ الوزن.');
+});
+$('saveAll').addEventListener('click',save);
+function backup(){
+const blob=new Blob([JSON.stringify({plan,water,history},null,2)],{type:'application/json'});
+const url=URL.createObjectURL(blob),a=document.createElement('a');
+a.href=url;a.download='wasam-fitness-backup.json';a.click();URL.revokeObjectURL(url);
+}
+$('downloadBackup').addEventListener('click',backup);
+$('exportData').addEventListener('click',backup);
+$('clearData').addEventListener('click',()=>{
+if(confirm('متأكد تريد تمسح كل البيانات المحفوظة من هذا المتصفح؟')){
+localStorage.removeItem(STORE);plan=null;water=0;history=[];
+alert('تم مسح البيانات المحفوظة.');showSection('profile');
+}
+});
+$('weightDate').value=new Date().toISOString().slice(0,10);
+try{
+const x=JSON.parse(localStorage.getItem(STORE)||'null');
+if(x&&x.plan){
+plan=x.plan;water=x.water||0;history=x.history||[];
+fillForm(plan.data);goal=plan.data.goal;
+document.querySelectorAll('.goal').forEach(b=>b.classList.toggle('active',b.dataset.goal===goal));
+render();showSection('dashboard');
+}
+}catch(e){}
+})();
+</script>
+</body>
+</html>
